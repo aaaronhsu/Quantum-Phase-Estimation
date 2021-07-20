@@ -27,7 +27,7 @@
     }
 
     operation QPE (
-        oracle : (Qubit) => Unit,
+        oracle : (Qubit, Qubit) => Unit,
         register : Qubit[],
         target : Qubit
     ) : Unit
