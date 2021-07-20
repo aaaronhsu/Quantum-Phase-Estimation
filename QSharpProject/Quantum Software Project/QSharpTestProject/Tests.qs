@@ -12,4 +12,9 @@
 
         Message("Test passed.");
     }
+
+    operation oracle1 (controlQubit : Qubit, ancilla : Qubit) : Unit
+    {
+        Controlled T([controlQubit], ancilla);
+    }
 }
