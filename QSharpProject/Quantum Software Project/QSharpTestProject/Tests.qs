@@ -13,7 +13,7 @@
     @Test("QuantumSimulator")
     operation Oracle1Test () : Unit
     {
-        use register = Qubit[10];
+        use register = Qubit[3];
 
         let ret = QPEmeasure(oracle1, register);
 
