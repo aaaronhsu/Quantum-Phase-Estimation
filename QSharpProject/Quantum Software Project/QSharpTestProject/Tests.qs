@@ -5,7 +5,7 @@
 
     open QSharpTestProject;
 
-    operation oracle1 (controlQubit : Qubit, ancilla : Qubit) : Unit
+    operation oracle1 (controlQubit : Qubit, ancilla : Qubit) : Unit is Ctl
     {
         Controlled T([controlQubit], ancilla);
     }
@@ -13,7 +13,7 @@
     @Test("QuantumSimulator")
     operation Oracle1Test () : Unit
     {
-        use register = Qubit[3];
+        use register = Qubit[5];
 
         let ret = QPEmeasure(oracle1, register);
 

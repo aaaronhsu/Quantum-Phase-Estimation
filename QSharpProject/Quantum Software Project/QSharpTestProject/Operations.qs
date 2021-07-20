@@ -34,8 +34,6 @@
         ancilla : Qubit
     ) : Unit
     {
-        // setup
-
         ApplyToEach(H, register);
         X(ancilla);
 
@@ -49,8 +47,7 @@
             }
             set repetitions = repetitions * 2;
         }
-
-
+        
         Adjoint QFTLE(LittleEndian(register));
     }
 
@@ -59,12 +56,9 @@
         register : Qubit[]
     ) : Double
     {
-
         use ancilla = Qubit();
 
         QPE(oracle, register, ancilla);
-
-        DumpRegister((), register);
 
         let result = IntAsDouble(MeasureInteger(LittleEndian(register)));
 
