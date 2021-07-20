@@ -5,19 +5,17 @@
 
     open QSharpTestProject;
 
-    operation oracle1 (ancilla : Qubit) : Unit is Ctl
+    operation oracle1 (controlQubit : Qubit, ancilla : Qubit) : Unit
     {
-        T(ancilla);
+        Controlled T([controlQubit], ancilla);
     }
 
     @Test("QuantumSimulator")
     operation Oracle1Test () : Unit
     {
-        use (register, ancilla) = (Qubit[10], Qubit());
+        use register = Qubit[3];
 
-        let ret = QPEmeasure(oracle1, register, ancilla);
-
-        ResetAll(register + [ancilla]);
+        let ret = QPEmeasure(oracle1, register);
 
         if ret != 0.125
         {
