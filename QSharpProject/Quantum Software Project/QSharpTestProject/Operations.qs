@@ -28,8 +28,7 @@
 
     operation QPE (
         oracle : (Qubit, Qubit) => Unit,
-        register : Qubit[],
-        target : Qubit
+        register : Qubit[]
     ) : Unit
     {
         // setup
@@ -56,11 +55,10 @@
 
     operation QPEmeasure (
         oracle : (Qubit, Qubit) => Unit,
-        register : Qubit[],
-        target : Qubit
+        register : Qubit[]
     ) : Double
     {
-        QPE(oracle, register, target);
+        QPE(oracle, register);
 
         let result = IntAsDouble(MeasureInteger(LittleEndian(register)));
 
