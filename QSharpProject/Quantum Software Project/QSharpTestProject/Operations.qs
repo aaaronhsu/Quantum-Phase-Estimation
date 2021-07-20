@@ -6,9 +6,11 @@
     open Microsoft.Quantum.Convert;
     open Microsoft.Quantum.Math;
     open Microsoft.Quantum.Measurement;
+    open Microsoft.Quantum.Diagnostics;
+    open Microsoft.Quantum.Arrays;
 
 
-    operation QFT (register : BigEndian) : Unit is Adj + Ctl
+    operation QFT2 (register : BigEndian) : Unit is Adj + Ctl
     {
         for i in 0 .. Length(register!) - 1 
         {
@@ -28,11 +30,11 @@
 
     operation QPE (
         oracle : (Qubit, Qubit) => Unit,
-        register : Qubit[]
+        register : Qubit[],
+        ancilla : Qubit
     ) : Unit
     {
         // setup
-        use ancilla = Qubit();
 
         ApplyToEach(H, register);
         X(ancilla);
@@ -48,9 +50,8 @@
             set repetitions = repetitions * 2;
         }
 
-        Reset(ancilla);
 
-        Adjoint QFT(BigEndian(register));
+        Adjoint QFTLE(LittleEndian(register));
     }
 
     operation QPEmeasure (
@@ -58,9 +59,16 @@
         register : Qubit[]
     ) : Double
     {
-        QPE(oracle, register);
+
+        use ancilla = Qubit();
+
+        QPE(oracle, register, ancilla);
+
+        DumpRegister((), register);
 
         let result = IntAsDouble(MeasureInteger(LittleEndian(register)));
+
+        Reset(ancilla);
 
         return result / IntAsDouble((2 ^ Length(register)));
     }
