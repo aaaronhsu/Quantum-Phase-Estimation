@@ -27,7 +27,7 @@
     }
 
     operation QPE (
-        oracle : (Qubit) => Unit,
+        oracle : (Qubit, Qubit) => Unit,
         register : Qubit[],
         target : Qubit
     ) : Unit
@@ -44,7 +44,7 @@
         for controlQubit in register {
 
             for i in 1 .. repetitions {
-                Controlled oracle(controlQubit, ancilla);
+                oracle(controlQubit, ancilla);
             }
             set repetitions = repetitions * 2;
         }
