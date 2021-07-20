@@ -27,8 +27,9 @@
     }
 
     operation QPE (
-        arbitraryRotation : Double,
-        register : Qubit[]
+        oracle : (Qubit) => Unit,
+        register : Qubit[],
+        target : Qubit
     ) : Unit
     {
         // setup
@@ -40,14 +41,15 @@
         // repeated rotations
         mutable repetitions = 1;
 
-        for cqubit in register
-        {
-            for i in 1 .. repetitions
-            {
-                Controlled P(PI()/4, cqubit, ancilla);
+        for controlQubit in register {
+
+            for i in 1 .. repetitions {
+                Controlled oracle(controlQubit, ancilla);
             }
             set repetitions = repetitions * 2;
         }
+
+        Reset(ancilla);
 
         Adjoint QFT(BigEndian(register));
     }
