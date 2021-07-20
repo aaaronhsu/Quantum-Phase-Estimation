@@ -53,4 +53,17 @@
 
         Adjoint QFT(BigEndian(register));
     }
+
+    operation QPEmeasure (
+        oracle : (Qubit, Qubit) => Unit,
+        register : Qubit[],
+        target : Qubit
+    ) : Double
+    {
+        QPE(oracle, register, target);
+
+        let result = IntAsDouble(MeasureInteger(LittleEndian(register)));
+
+        return result / IntAsDouble((2 ^ Length(register)));
+    }
 }
