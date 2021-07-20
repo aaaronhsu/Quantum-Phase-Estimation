@@ -17,10 +17,9 @@
 
         let ret = QPEmeasure(oracle1, register);
 
-        Message($"Measured {ret}");
-
-        ResetAll(register);
-
-        AssertAllZero(register);
+        if ret != 0.125
+        {
+            fail $"Measured {ret}";
+        }
     }
 }
