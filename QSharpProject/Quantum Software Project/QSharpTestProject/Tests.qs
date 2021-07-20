@@ -5,15 +5,6 @@
 
     open QSharpTestProject;
 
-    @Test("QuantumSimulator")
-    operation AllocateQubit () : Unit {
-
-        use q = Qubit();
-        AssertMeasurement([PauliZ], [q], Zero, "Newly allocated qubit must be in |0> state.");
-
-        Message("Test passed.");
-    }
-
     operation oracle1 (controlQubit : Qubit, ancilla : Qubit) : Unit
     {
         Controlled T([controlQubit], ancilla);
@@ -22,7 +13,7 @@
     @Test("QuantumSimulator")
     operation Oracle1Test () : Unit
     {
-        use register = Qubit[3];
+        use register = Qubit[10];
 
         let ret = QPEmeasure(oracle1, register);
 
