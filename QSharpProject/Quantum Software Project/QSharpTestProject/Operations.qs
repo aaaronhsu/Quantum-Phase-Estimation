@@ -44,7 +44,7 @@
         for controlQubit in register {
 
             for i in 1 .. repetitions {
-                Controlled oracle(controlQubit, ancilla);
+                oracle(controlQubit, ancilla);
             }
             set repetitions = repetitions * 2;
         }
