@@ -10,12 +10,6 @@
 
     operation QFT (register : BigEndian) : Unit is Adj + Ctl
     {
-        // Hint: there are two functions you may want to use here:
-        // the first is your implementation of register reversal in Lab 2,
-        // Exercise 2.
-        // The second is the Microsoft.Quantum.Intrinsic.R1Frac() gate.
-
-        // TODO
         for i in 0 .. Length(register!) - 1 
         {
             H(register![i]);
@@ -34,9 +28,27 @@
 
     operation QPE (
         arbitraryRotation : Double,
-        t : Int
-    ) : Double
+        register : Qubit[]
+    ) : Unit
     {
+        // setup
+        use ancilla = Qubit();
 
+        ApplyToEach(H, register);
+        X(ancilla);
+
+        // repeated rotations
+        mutable repetitions = 1;
+
+        for cqubit in register
+        {
+            for i in 1 .. repetitions
+            {
+                // do rotation on ancilla with cqubit as control, arbitraryRotation as rotation
+            }
+            set repetitions = repetitions * 2;
+        }
+
+        Adjoint QFT(BigEndian(register));
     }
 }
