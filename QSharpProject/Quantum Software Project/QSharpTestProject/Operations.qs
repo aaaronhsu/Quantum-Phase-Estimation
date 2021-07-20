@@ -16,16 +16,27 @@
         // The second is the Microsoft.Quantum.Intrinsic.R1Frac() gate.
 
         // TODO
-        for i in 0 .. Length(register!) - 1 {
+        for i in 0 .. Length(register!) - 1 
+        {
             H(register![i]);
 
-            for j in i + 1 .. Length(register!) - 1 {
+            for j in i + 1 .. Length(register!) - 1 
+            {
                 Controlled R1Frac(([register![j]]), (2, j - i + 1, register![i]));
             }
         }
 
-        for i in 0 .. (Length(register!) / 2) - 1 {
+        for i in 0 .. (Length(register!) / 2) - 1 
+        {
             SWAP(register![i], register![Length(register!) - i - 1]);
         }
+    }
+
+    operation QPE (
+        arbitraryRotation : Double,
+        t : Int
+    ) : Double
+    {
+
     }
 }
