@@ -44,7 +44,7 @@
         {
             for i in 1 .. repetitions
             {
-                // do rotation on ancilla with cqubit as control, arbitraryRotation as rotation
+                Controlled P(PI()/4, cqubit, ancilla);
             }
             set repetitions = repetitions * 2;
         }
