@@ -2,6 +2,7 @@
     open Microsoft.Quantum.Canon;
     open Microsoft.Quantum.Diagnostics;
     open Microsoft.Quantum.Intrinsic;
+    open Microsoft.Quantum.Math;
 
     open QSharpTestProject;
 
@@ -25,13 +26,13 @@
 
     operation oracle2 (ancilla : Qubit) : Unit is Ctl
     {
-        R1(1.0/3.0, ancilla);
+        R1(2.0 * PI() / 3.0, ancilla);
     }
 
     @Test("QuantumSimulator")
     operation Oracle2Test () : Unit
     {
-        use register = Qubit[3];
+        use register = Qubit[5];
 
         let ret = QPEmeasure(oracle2, register);
 
