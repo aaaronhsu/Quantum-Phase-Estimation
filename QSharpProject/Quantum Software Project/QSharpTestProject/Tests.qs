@@ -15,10 +15,11 @@
     operation Oracle1Test () : Unit
     {
         use register = Qubit[5];
+        let estimatedAnswer = 1.0 / 8.0;
 
         let ret = QPEmeasure(oracle1, register);
 
-        if ret != 0.125
+        if not (estimatedAnswer - 0.05 < ret and ret < estimatedAnswer + 0.05)
         {
             fail $"Measured {ret}";
         }
@@ -33,10 +34,12 @@
     operation Oracle2Test () : Unit
     {
         use register = Qubit[10];
+        let estimatedAnswer = 1.0 / 3.0;
 
         let ret = QPEmeasure(oracle2, register);
+        
 
-        if ret != 1.0/3.0
+        if not (estimatedAnswer - 0.05 < ret and ret < estimatedAnswer + 0.05)
         {
             fail $"Measured {ret}";
         }
