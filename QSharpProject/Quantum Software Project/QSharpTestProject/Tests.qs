@@ -32,11 +32,9 @@
     @Test("QuantumSimulator")
     operation Oracle2Test () : Unit
     {
-        use register = Qubit[5];
+        use register = Qubit[10];
 
         let ret = QPEmeasure(oracle2, register);
-
-        Message($"{ret}");
 
         if ret != 1.0/3.0
         {
