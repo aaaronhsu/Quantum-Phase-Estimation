@@ -41,7 +41,7 @@
 
         QPE(oracle, register, ancilla);
 
-        DumpRegister((), Reversed(register));
+        DumpRegister((), Reversed(register + [ancilla]));
 
         let result = IntAsDouble(MeasureInteger(LittleEndian(register)));
 

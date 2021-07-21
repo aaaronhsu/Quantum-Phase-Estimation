@@ -20,7 +20,6 @@
         for i in 1 .. 3
         {
             let ret = QPEmeasure(oracle1, register);
-        
 
             if not (estimatedAnswer - 0.05 < ret and ret < estimatedAnswer + 0.05)
             {
@@ -45,7 +44,30 @@
         for i in 1 .. 3
         {
             let ret = QPEmeasure(oracle2, register);
-        
+
+            if not (estimatedAnswer - 0.05 < ret and ret < estimatedAnswer + 0.05)
+            {
+                fail $"Measured {ret}";
+            }
+
+            ResetAll(register);
+        }
+    }
+
+    operation oracle3 (ancilla : Qubit) : Unit is Ctl
+    {
+        S(ancilla);
+    }
+
+    @Test("QuantumSimulator")
+    operation Oracle3Test () : Unit
+    {
+        use register = Qubit[10];
+        let estimatedAnswer = 0.25;
+
+        for i in 1 .. 3
+        {
+            let ret = QPEmeasure(oracle3, register);
 
             if not (estimatedAnswer - 0.05 < ret and ret < estimatedAnswer + 0.05)
             {
