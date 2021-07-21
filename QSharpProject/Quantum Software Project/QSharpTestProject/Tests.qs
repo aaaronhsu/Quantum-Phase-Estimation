@@ -101,4 +101,31 @@
             ResetAll(register);
         }
     }
+
+
+
+    // non-rotation gates
+    operation oracle5 (ancilla : Qubit) : Unit is Ctl
+    {
+        H(ancilla);
+    }
+
+    @Test("QuantumSimulator")
+    operation Oracle5Test () : Unit
+    {
+        use register = Qubit[3];
+        let estimatedAnswer = 0.5;
+
+        for i in 1 .. 3
+        {
+            let ret = QPEmeasure(oracle5, register);
+
+            if not (estimatedAnswer - 0.05 < ret and ret < estimatedAnswer + 0.05)
+            {
+                fail $"Measured {ret}";
+            }
+
+            ResetAll(register);
+        }
+    }
 }
