@@ -22,4 +22,24 @@
             fail $"Measured {ret}";
         }
     }
+
+    operation oracle2 (controlQubit : Qubit, ancilla : Qubit) : Unit
+    {
+        Controlled R1([controlQubit], (1.0/3.0, ancilla));
+    }
+
+    @Test("QuantumSimulator")
+    operation Oracle2Test () : Unit
+    {
+        use register = Qubit[3];
+
+        let ret = QPEmeasure(oracle2, register);
+
+        Message($"{ret}");
+
+        if ret != 1.0/3.0
+        {
+            fail $"Measured {ret}";
+        }
+    }
 }
