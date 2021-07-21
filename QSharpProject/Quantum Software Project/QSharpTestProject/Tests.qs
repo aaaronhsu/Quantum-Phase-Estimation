@@ -5,9 +5,9 @@
 
     open QSharpTestProject;
 
-    operation oracle1 (controlQubit : Qubit, ancilla : Qubit) : Unit is Ctl
+    operation oracle1 (ancilla : Qubit) : Unit is Ctl
     {
-        Controlled T([controlQubit], ancilla);
+        T(ancilla);
     }
 
     @Test("QuantumSimulator")
