@@ -29,13 +29,11 @@
     }
 
     operation QPE (
-        oracle : (Qubit, Qubit) => Unit,
+        oracle : (Qubit) => Unit is Ctl,
         register : Qubit[],
         ancilla : Qubit
     ) : Unit
     {
-        // setup
-
         ApplyToEach(H, register);
         X(ancilla);
 
@@ -45,26 +43,22 @@
         for controlQubit in register {
 
             for i in 1 .. repetitions {
-                oracle(controlQubit, ancilla);
+                Controlled oracle([controlQubit], ancilla);
             }
             set repetitions = repetitions * 2;
         }
-
-
+        
         Adjoint QFTLE(LittleEndian(register));
     }
 
     operation QPEmeasure (
-        oracle : (Qubit, Qubit) => Unit,
+        oracle : (Qubit) => Unit is Ctl,
         register : Qubit[]
     ) : Double
     {
-
         use ancilla = Qubit();
 
         QPE(oracle, register, ancilla);
-
-        DumpRegister((), register);
 
         let result = IntAsDouble(MeasureInteger(LittleEndian(register)));
 
