@@ -77,4 +77,28 @@
             ResetAll(register);
         }
     }
+
+    operation oracle4 (ancilla : Qubit) : Unit is Ctl
+    {
+        R1(PI() / 25.0, ancilla);
+    }
+
+    @Test("QuantumSimulator")
+    operation Oracle4Test () : Unit
+    {
+        use register = Qubit[10];
+        let estimatedAnswer = 0.02;
+
+        for i in 1 .. 3
+        {
+            let ret = QPEmeasure(oracle4, register);
+
+            if not (estimatedAnswer - 0.05 < ret and ret < estimatedAnswer + 0.05)
+            {
+                fail $"Measured {ret}";
+            }
+
+            ResetAll(register);
+        }
+    }
 }
