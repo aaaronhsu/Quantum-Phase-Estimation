@@ -23,9 +23,9 @@
         }
     }
 
-    operation oracle2 (controlQubit : Qubit, ancilla : Qubit) : Unit
+    operation oracle2 (ancilla : Qubit) : Unit is Ctl
     {
-        Controlled R1([controlQubit], (1.0/3.0, ancilla));
+        R1(1.0/3.0, ancilla);
     }
 
     @Test("QuantumSimulator")
