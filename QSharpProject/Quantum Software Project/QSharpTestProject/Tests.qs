@@ -6,7 +6,7 @@
 
     open QSharpTestProject;
 
-    operation oracle1 (ancilla : Qubit) : Unit is Ctl
+    operation oracle1 (ancilla : Qubit) : Unit is Adj + Ctl
     {
         T(ancilla);
     }
@@ -14,7 +14,7 @@
     @Test("QuantumSimulator")
     operation Oracle1Test () : Unit
     {
-        use register = Qubit[10];
+        use register = Qubit[5];
         let estimatedAnswer = 1.0 / 8.0;
 
         for i in 1 .. 3
@@ -30,7 +30,7 @@
         }
     }
 
-    operation oracle2 (ancilla : Qubit) : Unit is Ctl
+    operation oracle2 (ancilla : Qubit) : Unit is Adj + Ctl
     {
         R1(2.0 * PI() / 3.0, ancilla);
     }
@@ -54,7 +54,7 @@
         }
     }
 
-    operation oracle3 (ancilla : Qubit) : Unit is Ctl
+    operation oracle3 (ancilla : Qubit) : Unit is Adj + Ctl
     {
         S(ancilla);
     }
@@ -78,7 +78,7 @@
         }
     }
 
-    operation oracle4 (ancilla : Qubit) : Unit is Ctl
+    operation oracle4 (ancilla : Qubit) : Unit is Adj + Ctl
     {
         R1(PI() / 25.0, ancilla);
     }
@@ -105,7 +105,7 @@
 
 
     // non-rotation gates
-    operation oracle5 (ancilla : Qubit) : Unit is Ctl
+    operation oracle5 (ancilla : Qubit) : Unit is Adj + Ctl
     {
         H(ancilla);
     }
@@ -113,7 +113,7 @@
     @Test("QuantumSimulator")
     operation Oracle5Test () : Unit
     {
-        use register = Qubit[3];
+        use register = Qubit[4];
         let estimatedAnswer = 0.5;
 
         for i in 1 .. 3
