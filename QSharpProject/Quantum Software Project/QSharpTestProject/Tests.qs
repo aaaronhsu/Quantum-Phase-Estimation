@@ -128,4 +128,15 @@
             ResetAll(register);
         }
     }
+
+    
+
+
+    // two qubit gates
+    operation oracle6 (ancilla : Qubit[]) : Unit is Adj + Ctl
+    {
+        // this will rotate by pi if ancilla is |11>
+        Controlled R1(ancilla[0 .. 0], (PI(), ancilla[1]));
+    }
+
 }
