@@ -109,11 +109,8 @@
             ResetAll(register + ancilla);
         }
     }
-
     
-
-
-    // two qubit gates
+    // 2+ ancillas
     operation oracle5 (ancilla : Qubit[]) : Unit is Adj + Ctl
     {
         // this will rotate by pi if ancilla is |11>
@@ -124,6 +121,61 @@
     operation Oracle5Test () : Unit
     {
         use (register, ancilla) = (Qubit[10], Qubit[2]);
+        let estimatedAnswer = 0.5;
+
+        for i in 1 .. 3
+        {
+            let ret = QPEmeasure(oracle5, register, ancilla);
+
+            if not (estimatedAnswer - 0.05 < ret and ret < estimatedAnswer + 0.05)
+            {
+                fail $"Measured {ret}";
+            }
+
+            ResetAll(register + ancilla);
+        }
+    }
+
+    operation oracle6 (ancilla : Qubit[]) : Unit is Adj + Ctl
+    {
+        Z(ancilla[0]);
+        S(ancilla[1]);
+    }
+
+    @Test("QuantumSimulator")
+    operation Oracle6Test () : Unit
+    {
+        use (register, ancilla) = (Qubit[5], Qubit[2]);
+        let estimatedAnswer = 0.5;
+
+        for i in 1 .. 3
+        {
+            let ret = QPEmeasure(oracle5, register, ancilla);
+
+            if not (estimatedAnswer - 0.05 < ret and ret < estimatedAnswer + 0.05)
+            {
+                fail $"Measured {ret}";
+            }
+
+            ResetAll(register + ancilla);
+        }
+    }
+
+    operation oracle7 (ancilla : Qubit[]) : Unit is Adj + Ctl
+    {
+		for qubit in ancilla {
+            X(qubit);
+        }
+        Controlled Z([ancilla[0]], ancilla[1]);
+        H(ancilla[2]);
+        CCNOT(ancilla[0], ancilla[1], ancilla[2]);
+        H(ancilla[2]);
+    }
+
+    @Test("QuantumSimulator")
+    operation Oracle7Test () : Unit
+    {
+        use (register, ancilla) = (Qubit[5], Qubit[3]);
         let estimatedAnswer = 0.5;
 
         for i in 1 .. 3
