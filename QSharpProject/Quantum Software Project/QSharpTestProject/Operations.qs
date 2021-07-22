@@ -35,7 +35,7 @@
     {
         QPE(oracle, register, ancilla);
 
-        DumpRegister((), register);
+        DumpRegister((), ancilla + register);
 
         let result = IntAsDouble(MeasureInteger(LittleEndian(register)));
 
