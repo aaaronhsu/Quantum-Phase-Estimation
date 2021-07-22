@@ -10,13 +10,13 @@
     open Microsoft.Quantum.Arrays;
 
     operation QPE (
-        oracle : (Qubit) => Unit is Adj + Ctl,
+        oracle : (Qubit[]) => Unit is Adj + Ctl,
         register : Qubit[],
-        ancilla : Qubit
+        ancilla : Qubit[]
     ) : Unit is Adj
     {
         ApplyToEachA(H, register);
-        X(ancilla);
+        ApplyToEachA(X, ancilla);
 
         for i in 0 .. Length(register) - 1 {
             for j in 1 .. (2 ^ i) {
@@ -28,12 +28,11 @@
     }
 
     operation QPEmeasure (
-        oracle : (Qubit) => Unit is Adj + Ctl,
-        register : Qubit[]
+        oracle : (Qubit[]) => Unit is Adj + Ctl,
+        register : Qubit[],
+        ancilla : Qubit[]
     ) : Double
     {
-        use ancilla = Qubit();
-
         QPE(oracle, register, ancilla);
 
         DumpRegister((), register);
@@ -41,8 +40,6 @@
         let result = IntAsDouble(MeasureInteger(LittleEndian(register)));
 
         Message($"{result} / {IntAsDouble(2 ^ Length(register))}");
-
-        Reset(ancilla);
 
         return result / IntAsDouble((2 ^ Length(register)));
     }
