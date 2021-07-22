@@ -136,6 +136,7 @@
         }
     }
 
+    // tests from https://github.com/Qiskit/qiskit-terra/blob/fcedd7e17a21a9ac3dcc1891d38895c1bebca98a/test/python/circuit/library/test_phase_estimation.py
     operation oracle6 (ancilla : Qubit[]) : Unit is Adj + Ctl
     {
         Z(ancilla[0]);
