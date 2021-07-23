@@ -15,6 +15,15 @@ from time import perf_counter
 # NOTE: it is assumed that you've already been through Labs 1 through 11
 # using Q# before you explore the Qiskit portion of the class, so this will not
 # cover the fundamental concepts of quantum software development themselves.
+def qft_dagger(qc, n):
+    """n-qubit QFTdagger the first n qubits in circ"""
+    # Don't forget the Swaps!
+    for qubit in range(n//2):
+        qc.swap(qubit, n-qubit-1)
+    for j in range(n):
+        for m in range(j):
+            qc.cp(-math.pi/float(2**(j-m)), m, j)
+        qc.h(j)
 
 def test_1(circuit, ancilla):
     circuit.t(ancilla[0])
@@ -40,6 +49,8 @@ def QPE(circuit, qubits, ancilla, unit_test):
             unit_test(circuit, ancilla)
 
     # apply inverse QFT in little endian
+    qft_dagger(circuit, 3)
+
 
 
 
