@@ -46,9 +46,7 @@ def QPE(circuit, qubits, ancilla, unit_test):
     for i in range(0, len(qubits)):
         for j in range(1, 2 ** i + 1):
             # apply controlled oracle here
-            # MAKE THIS UNIT_TEST THING CONTROLLED BY qubits[i]!
-            # unit_test(circuit, ancilla)
-            circuit.cz(qubits[i], ancilla[0])
+            circuit.cp(angle, counting_qubit, 3)
 
     # apply inverse QFT in little endian
     qft_dagger(circuit, 3)
