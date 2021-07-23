@@ -12,6 +12,7 @@
     <OutputPath>.</OutputPath>
     <Name>QiskitQPE</Name>
     <RootNamespace>QiskitImplementation</RootNamespace>
+    <InterpreterId>Global|VisualStudio|qiskit-env</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,6 +24,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="QiskitQPE.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="CondaEnv|CondaEnv|qiskit-env" />
+    <InterpreterReference Include="Global|VisualStudio|qiskit-env" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
