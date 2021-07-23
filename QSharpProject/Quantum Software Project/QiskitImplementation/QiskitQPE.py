@@ -7,6 +7,7 @@ from qiskit import Aer
 from qiskit import IBMQ
 from qiskit.compiler import transpile
 from time import perf_counter
+import math
 
 
 # This file provides a short reference that shows typical operations in Qiskit,
@@ -46,7 +47,8 @@ def QPE(circuit, qubits, ancilla, unit_test):
         for j in range(1, 2 ** i + 1):
             # apply controlled oracle here
             # MAKE THIS UNIT_TEST THING CONTROLLED BY qubits[i]!
-            unit_test(circuit, ancilla)
+            # unit_test(circuit, ancilla)
+            circuit.cz(qubits[i], ancilla[0])
 
     # apply inverse QFT in little endian
     qft_dagger(circuit, 3)
