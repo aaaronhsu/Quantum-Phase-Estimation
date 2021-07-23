@@ -146,12 +146,12 @@
     @Test("QuantumSimulator")
     operation Oracle6Test () : Unit
     {
-        use (register, ancilla) = (Qubit[5], Qubit[2]);
-        let estimatedAnswer = 0.5;
+        use (register, ancilla) = (Qubit[3], Qubit[2]);
+        let estimatedAnswer = 0.75;
 
         for i in 1 .. 3
         {
-            let ret = QPEmeasure(oracle5, register, ancilla);
+            let ret = QPEmeasure(oracle6, register, ancilla);
 
             if not (estimatedAnswer - 0.05 < ret and ret < estimatedAnswer + 0.05)
             {
@@ -167,21 +167,17 @@
 		for qubit in ancilla {
             X(qubit);
         }
-        Controlled Z([ancilla[0]], ancilla[1]);
-        H(ancilla[2]);
-        CCNOT(ancilla[0], ancilla[1], ancilla[2]);
-        H(ancilla[2]);
     }
 
     @Test("QuantumSimulator")
     operation Oracle7Test () : Unit
     {
-        use (register, ancilla) = (Qubit[5], Qubit[3]);
-        let estimatedAnswer = 0.5;
+        use (register, ancilla) = (Qubit[2], Qubit[3]);
+        let estimatedAnswer = 0.0;
 
         for i in 1 .. 3
         {
-            let ret = QPEmeasure(oracle5, register, ancilla);
+            let ret = QPE7(oracle7, register, ancilla);
 
             if not (estimatedAnswer - 0.05 < ret and ret < estimatedAnswer + 0.05)
             {
