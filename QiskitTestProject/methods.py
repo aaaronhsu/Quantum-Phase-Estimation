@@ -2,6 +2,7 @@ from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister
 from qiskit.circuit.library import QFT
 from qiskit import execute
 from qiskit import Aer
+from qiskit import IBMQ
 import math
 
 def QPE(oracle, circuit, register, ancilla):
@@ -16,16 +17,24 @@ def QPE(oracle, circuit, register, ancilla):
     qft_dagger(circuit, len(register))
 
 
-def QPEmeasure(oracle, circuit, register, ancilla, classical_register):
+def QPEmeasure(oracle, circuit, register, ancilla, classical_register, simulation=True):
     
     QPE(oracle, circuit, register, ancilla)
 
     result = circuit.measure(register, classical_register)
     print(circuit)
 
-    simulator = Aer.get_backend('aer_simulator')
-    simulation = execute(circuit, simulator, shots=1)
-    result = simulation.result()
+    result = None
+
+    if simulation:
+        simulator = Aer.get_backend('aer_simulator')
+        simulation = execute(circuit, simulator, shots=1)
+        result = simulation.result()
+    else:
+        provider = IBMQ.load_account()
+        backend = provider.get_backend('ibmq_santiago')
+        run = execute(circuit, backend, shots=1)
+        result = run.result()
 
     counts = result.get_counts(circuit)
     

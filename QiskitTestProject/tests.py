@@ -14,9 +14,9 @@ class Test_test_1(unittest.TestCase):
 
     def test_A(self):
 
-        register = QuantumRegister(5)
+        register = QuantumRegister(4)
         ancilla = QuantumRegister(1)
-        classical_register = ClassicalRegister(5)
+        classical_register = ClassicalRegister(4)
         circuit = QuantumCircuit(register, ancilla, classical_register)
         
         expected_ans = 1/4
