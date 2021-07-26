@@ -25,7 +25,29 @@ class Test_test_1(unittest.TestCase):
         if not (expected_ans - 0.05 < result and result < expected_ans + 0.05):
             self.fail("Incorrect result: " + str(result))
 
-        print("Test passed!")
+        print("Test 1 passed!")
+
+
+
+def oracle2(circuit, control_qubit, ancilla):
+        circuit.cp(math.pi * 2 / 3.0, control_qubit, ancilla)
+
+class Test_test_2(unittest.TestCase):
+
+    def test_A(self):
+
+        register = QuantumRegister(4)
+        ancilla = QuantumRegister(1)
+        classical_register = ClassicalRegister(4)
+        circuit = QuantumCircuit(register, ancilla, classical_register)
+        
+        expected_ans = 1/3
+        result = methods.QPEmeasure(oracle2, circuit, register, ancilla, classical_register)
+
+        if not (expected_ans - 0.05 < result and result < expected_ans + 0.05):
+            self.fail("Incorrect result: " + str(result))
+
+        print("Test 2 passed!")
 
 if __name__ == '__main__':
     unittest.main()

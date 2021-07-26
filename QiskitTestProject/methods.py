@@ -25,9 +25,11 @@ def QPEmeasure(oracle, circuit, register, ancilla, classical_register, simulatio
     # call QPE subroutine
     QPE(oracle, circuit, register, ancilla)
 
-    # print the circuit diagram
+    
     result = circuit.measure(register, classical_register)
-    print(circuit)
+
+    # print the circuit diagram
+    # print(circuit)
 
     # initialize output
     result = None
@@ -35,12 +37,12 @@ def QPEmeasure(oracle, circuit, register, ancilla, classical_register, simulatio
     # run circuit on simulator/quantum computer
     if simulation:
         simulator = Aer.get_backend('aer_simulator')
-        simulation = execute(circuit, simulator, shots=1)
+        simulation = execute(circuit, simulator, shots=1024)
         result = simulation.result()
     else:
         provider = IBMQ.load_account()
         backend = provider.get_backend('ibmq_santiago')
-        run = execute(circuit, backend, shots=1)
+        run = execute(circuit, backend, shots=1024)
         result = run.result()
 
     # retrieve data and return estimated theta
