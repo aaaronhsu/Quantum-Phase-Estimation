@@ -8,7 +8,7 @@ import math
 import methods
 
 def oracle1(circuit, control_qubit, ancilla):
-        circuit.cp(math.pi/4, control_qubit, ancilla)
+        circuit.cp(math.pi * 2 / 4.0, control_qubit, ancilla)
 
 class Test_test_1(unittest.TestCase):
 
@@ -19,7 +19,7 @@ class Test_test_1(unittest.TestCase):
         classical_register = ClassicalRegister(5)
         circuit = QuantumCircuit(register, ancilla, classical_register)
         
-        expected_ans = 0.125
+        expected_ans = 1/4
         result = methods.QPEmeasure(oracle1, circuit, register, ancilla, classical_register)
 
         if not (expected_ans - 0.05 < result and result < expected_ans + 0.05):

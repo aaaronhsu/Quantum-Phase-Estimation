@@ -53,7 +53,7 @@ def QPE(circuit, qubits, ancilla, unit_test):
 
     # apply inverse QFT in little endian
     # qft_dagger(circuit, 3)
-    QFT(approximation_degree=0, do_swaps=True, inverse=True, insert_barriers=True, name='circuit')
+    circuit += QFT(approximation_degree=0, do_swaps=True, inverse=True, insert_barriers=True, name='circuit')
 
 
 

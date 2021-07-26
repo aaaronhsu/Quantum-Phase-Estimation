@@ -30,7 +30,7 @@ def QPEmeasure(oracle, circuit, register, ancilla, classical_register):
     counts = result.get_counts(circuit)
     
     for(measured_state, count) in counts.items():
-        big_endian_state = measured_state[::-1]
+        big_endian_state = measured_state
         print(big_endian_state)
         return int(big_endian_state, 2) / (2 ** len(register))
 
