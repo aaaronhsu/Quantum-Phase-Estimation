@@ -23,7 +23,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="methods.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="QiskitQPE.py" />
+    <Compile Include="tests.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="CondaEnv|CondaEnv|qiskit-env" />

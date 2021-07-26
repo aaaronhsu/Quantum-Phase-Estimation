@@ -38,15 +38,15 @@ def QPE(circuit, qubits, ancilla, unit_test):
         qubits (QuantumRegister): The qubit register to run the gates on
     """
 
-    for q in qubits:
-        circuit.h(q)
-    for a in ancilla:
-        circuit.x(a)
+    circuit.h(qubits)
+    circuit.x(ancilla)
 
-    for i in range(0, len(qubits)):
-        for j in range(1, 2 ** i + 1):
-            # apply controlled oracle here
-            circuit.cp(angle, counting_qubit, 3)
+    angle = 2*math.pi/3
+    repetitions = 1
+    for counting_qubit in range(len(qubits)):
+        for i in range(repetitions):
+            circuit.cp(angle, counting_qubit, 3);
+        repetitions *= 2
 
     # apply inverse QFT in little endian
     qft_dagger(circuit, 3)
@@ -138,4 +138,4 @@ if __name__ == '__main__':
     # run_example_on_simulator(example_1)
 
     # Uncomment this line to run a circuit on a real quantum machine
-    run_example_on_hardware(test_1)
+    run_example_on_simulator(test_1)

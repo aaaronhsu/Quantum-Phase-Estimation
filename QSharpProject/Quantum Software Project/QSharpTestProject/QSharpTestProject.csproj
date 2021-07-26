@@ -13,10 +13,4 @@
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="..\..\..\..\..\..\AppData\Local\Temp\~vs1C3.py" Link="~vs1C3.py">
-      <CopyToOutputDirectory>copy</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
