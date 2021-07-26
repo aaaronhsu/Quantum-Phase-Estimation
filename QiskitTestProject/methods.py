@@ -7,25 +7,32 @@ import math
 
 def QPE(oracle, circuit, register, ancilla):
 
+    # initialize registers
     circuit.h(register)
     circuit.x(ancilla)
 
+    # repeatedly apply oracle
     for i in range(len(register)):
         for j in range(2 ** i):
             oracle(circuit, register[i], ancilla)
 
+    # inverse QFT
     qft_dagger(circuit, len(register))
 
 
 def QPEmeasure(oracle, circuit, register, ancilla, classical_register, simulation=True):
     
+    # call QPE subroutine
     QPE(oracle, circuit, register, ancilla)
 
+    # print the circuit diagram
     result = circuit.measure(register, classical_register)
     print(circuit)
 
+    # initialize output
     result = None
 
+    # run circuit on simulator/quantum computer
     if simulation:
         simulator = Aer.get_backend('aer_simulator')
         simulation = execute(circuit, simulator, shots=1)
@@ -36,6 +43,7 @@ def QPEmeasure(oracle, circuit, register, ancilla, classical_register, simulatio
         run = execute(circuit, backend, shots=1)
         result = run.result()
 
+    # retrieve data and return estimated theta
     counts = result.get_counts(circuit)
     
     for(measured_state, count) in counts.items():
