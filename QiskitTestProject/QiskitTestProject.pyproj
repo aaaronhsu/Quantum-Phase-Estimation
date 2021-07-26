@@ -5,7 +5,8 @@
     <ProjectGuid>1bf34e98-dec6-4eda-a64d-1b4ac2885331</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>QiskitQPE.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -26,7 +27,6 @@
     <Compile Include="methods.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="QiskitQPE.py" />
     <Compile Include="tests.py">
       <SubType>Code</SubType>
     </Compile>
