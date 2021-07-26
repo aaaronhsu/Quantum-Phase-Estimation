@@ -47,11 +47,14 @@ def QPEmeasure(oracle, circuit, register, ancilla, classical_register, simulatio
 
     # retrieve data and return estimated theta
     counts = result.get_counts(circuit)
+
+    ret = []
     
     for(measured_state, count) in counts.items():
-        big_endian_state = measured_state
-        print(big_endian_state)
-        return int(big_endian_state, 2) / (2 ** len(register))
+        for i in range(count):
+            ret.append(int(measured_state, 2) / (2 ** len(register)))
+       
+    return ret
 
 
 def qft_dagger(qc, n):
