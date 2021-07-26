@@ -10,7 +10,7 @@
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>QiskitQPE</Name>
+    <Name>QiskitTestProject</Name>
     <RootNamespace>QiskitImplementation</RootNamespace>
     <InterpreterId>Global|VisualStudio|qiskit-env</InterpreterId>
   </PropertyGroup>

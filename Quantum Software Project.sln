@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QSharpTestProject", "QSharpTestProject\QSharpTestProject.csproj", "{5555CD90-91A7-44A8-AAAF-92C7272F2C10}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "QiskitQPE", "QiskitImplementation\QiskitQPE.pyproj", "{1BF34E98-DEC6-4EDA-A64D-1B4AC2885331}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "QiskitTestProject", "QiskitImplementation\QiskitTestProject.pyproj", "{1BF34E98-DEC6-4EDA-A64D-1B4AC2885331}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
