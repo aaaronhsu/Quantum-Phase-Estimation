@@ -6,6 +6,7 @@ from qiskit import execute
 from qiskit import Aer
 from qiskit import IBMQ
 from qiskit.compiler import transpile
+from qiskit.circuit.library import QFT
 from time import perf_counter
 import math
 
@@ -38,18 +39,21 @@ def QPE(circuit, qubits, ancilla, unit_test):
         qubits (QuantumRegister): The qubit register to run the gates on
     """
 
-    circuit.h(qubits)
-    circuit.x(ancilla)
+    for q in qubits:
+        circuit.h(q)
+    for a in ancilla:
+        circuit.x(a)
 
-    angle = 2*math.pi/3
-    repetitions = 1
-    for counting_qubit in range(len(qubits)):
-        for i in range(repetitions):
-            circuit.cp(angle, counting_qubit, 3);
-        repetitions *= 2
+    angle = (2 * math.pi) / 3.0
+
+    for i in range(0, len(qubits)):
+        for j in range(1, 2 ** i + 1):
+            # apply controlled oracle here
+            circuit.cp(angle, qubits[i], ancilla[0])
 
     # apply inverse QFT in little endian
-    qft_dagger(circuit, 3)
+    # qft_dagger(circuit, 3)
+    QFT(approximation_degree=0, do_swaps=True, inverse=True, insert_barriers=True, name='circuit')
 
 
 
@@ -72,7 +76,7 @@ def run_example_on_simulator(unit_test):
     measurement = ClassicalRegister(3)
 
     # This will create a new circuit object with the two registers above added to it
-    circuit = QuantumCircuit(qubits, measurement, ancilla)
+    circuit = QuantumCircuit(qubits, measurement, ancilla, name='circuit')
 
     # Build the given example circuit
     QPE(circuit, qubits, ancilla, unit_test)
@@ -114,7 +118,7 @@ def run_example_on_hardware(unit_test):
     ancilla = QuantumRegister(1)
 
     measurement = ClassicalRegister(3)
-    circuit = QuantumCircuit(qubits, measurement, ancilla)
+    circuit = QuantumCircuit(qubits, measurement, ancilla, name='circuit')
     
     QPE(circuit, qubits, ancilla, unit_test)
     circuit.measure(qubits, measurement)
