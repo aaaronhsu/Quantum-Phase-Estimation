@@ -14,6 +14,7 @@ QPE is not practical for smaller quantum systems but is for larger, less error-p
 ## Challenges
 - Understanding math is difficult. Initially we had trouble learning and understanding how eigenvalues, eigenvectors, and other mathematical concepts applied to QPE
 - Endianness discrepancy between papers caused us to initially implement QPE incorrectly
+- Unfortunately we were not able to run our algorithm on large quantum computers so our conclusions have some speculation
 
 ## Acknowledgements
 Thank you to BWSI, our instructors, [Joe Clapis](https://github.com/jclapis) and [Richard Preston](https://github.com/rhpreston), and our TAs, [Filip Aronshtein](https://github.com/fil-a), [Mridul Sarkar](https://github.com/mertall), and [Christopher Um](https://github.com/rabbit-hole-q) for putting together and guiding this program. None of this would have been possible without you.
