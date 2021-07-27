@@ -15,15 +15,18 @@
         ancilla : Qubit[]
     ) : Unit is Adj
     {
+        // initialize registers
         ApplyToEachA(H, register);
         ApplyToEachA(X, ancilla);
 
+        // repeatedly apply oracle
         for i in 0 .. Length(register) - 1 {
             for j in 1 .. (2 ^ i) {
                 Controlled oracle([register[i]], ancilla);
             }
         }
         
+        // inverse QFT (little endian)
         Adjoint QFTLE(LittleEndian(register));
     }
 
@@ -33,10 +36,14 @@
         ancilla : Qubit[]
     ) : Double
     {
+        // call QPE
         QPE(oracle, register, ancilla);
 
-        DumpRegister((), register);
+        // print register
+        DumpRegister((), register + ancilla);
 
+
+        // convert and return measured value
         let result = IntAsDouble(MeasureInteger(LittleEndian(register)));
 
         Message($"{result} / {IntAsDouble(2 ^ Length(register))}");
