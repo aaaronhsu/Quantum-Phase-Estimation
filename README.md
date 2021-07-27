@@ -6,7 +6,7 @@ QPE is used to estimate a qubit's eigenvalue given an eigenvector and the unitar
 ## Coding Process
 First, we coded QPE in Q#, a language used to simulate qubits. We ran unit tests on multiple unitary operations such as rotations and their controlled variants. After confirming that our implementation of QPE worked, we migrated it to Python. Using the Qiskit library and IBM's quantum machines, we were able to implement and run our algorithm on actual quantum computers. Below is a circuit diagram of our implementation of QPE.
 
-![diagram](https://github.com/chicknmilk/Quantum-Phase-Estimation/blob/main/circuit.jpg)
+![diagram](https://github.com/chicknmilk/Quantum-Phase-Estimation/blob/main/circuit_diagram.jpg)
 
 ## Verdict
 QPE is not practical for smaller quantum systems but is for larger, less error-prone ones. As the number of qubits and quantum volume increases in quantum computers, QPE's accuracy and precision will also increase, making it one of the fundamental "building block" algorithms of the quantum world.
@@ -16,7 +16,7 @@ QPE is not practical for smaller quantum systems but is for larger, less error-p
 - Endianness discrepancy between papers caused us to initially implement QPE incorrectly
 
 ## Acknowledgements
-Thank you to BWSI, our instructors, [Joe Clapis](https://github.com/jclapis) and [Richard Preston](https://github.com/rhpreston), and our TAs, [Filip Aronshtein](https://github.com/fil-a), [Mridul Sarkar](https://github.com/mertall), and [Christopher Um](https://github.com/rabbit-hole-q) for putting together and guiding this program. None of this would have been possible without you. 
+Thank you to BWSI, our instructors, [Joe Clapis](https://github.com/jclapis) and [Richard Preston](https://github.com/rhpreston), and our TAs, [Filip Aronshtein](https://github.com/fil-a), [Mridul Sarkar](https://github.com/mertall), and [Christopher Um](https://github.com/rabbit-hole-q) for putting together and guiding this program. None of this would have been possible without you.
 
 ## Group Members
 - [Aaron Hsu](https://github.com/chicknmilk)
