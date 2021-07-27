@@ -2,6 +2,7 @@ from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister
 from qiskit.circuit.library import QFT
 from qiskit import execute
 from qiskit import Aer
+from qiskit.test.mock import FakeMontreal
 from qiskit import IBMQ
 import math
 
@@ -36,7 +37,10 @@ def QPEmeasure(oracle, circuit, register, ancilla, classical_register, simulatio
 
     # run circuit on simulator/quantum computer
     if simulation:
+        # change the simulator by switching the uncommented line (uncomment either line 41 or 42)
         simulator = Aer.get_backend('aer_simulator')
+        # simulator = FakeMontreal()
+
         simulation = execute(circuit, simulator, shots=1024)
         result = simulation.result()
     else:
