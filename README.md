@@ -1,4 +1,4 @@
-# Quantum Phase Estimation - BWSI Quantum Software Final Project
+# Quantum Phase Estimation
 
 ## What is QPE?
 QPE is a quantum algorithm used to estimate a qubit's eigenvalue given an eigenvector and the unitary operation it has been affected by (eg. rotation). It is often used as a subroutine in other quantum algorithms such as HHL and Shor's algorithm.
