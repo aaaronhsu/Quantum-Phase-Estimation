@@ -12,9 +12,9 @@ First, we coded QPE in Q#, a language used to simulate qubits. We ran unit tests
 QPE is not practical for smaller quantum systems but is for larger, less error-prone ones. As the number of qubits and quantum volume increases in quantum computers, QPE's accuracy and precision will also increase, making it one of the fundamental "building block" algorithms of the quantum world.
 
 ## Challenges
-- Understanding math is difficult. Initially we had trouble learning and understanding how eigenvalues, eigenvectors, and other mathematical concepts applied to QPE
+- Understanding quantum papers is difficult. Initially we had trouble learning and understanding how eigenvalues, eigenvectors, and other mathematical concepts applied to QPE
 - Endianness discrepancy between papers caused us to initially implement QPE incorrectly
-- Unfortunately we were not able to run our algorithm on large quantum computers so our conclusions have some speculation
+- Unfortunately we were not able to run our algorithm on large quantum computers so some of our conclusions are speculative
 
 ## Acknowledgements
 Thank you to BWSI, our instructors, [Joe Clapis](https://github.com/jclapis) and [Richard Preston](https://github.com/rhpreston), and our TAs, [Filip Aronshtein](https://github.com/fil-a), [Mridul Sarkar](https://github.com/mertall), and [Christopher Um](https://github.com/rabbit-hole-q) for putting together and guiding this program. None of this would have been possible otherwise.
